@@ -1,0 +1,26 @@
+# AI Declaration — AI Interview Career Readiness System
+
+> Declare whether and how AI will be embedded in the project. Identify the AI tool, purpose, expected output, and the student's responsibility for verification, modification and final integration. State where AI-generated material will appear in the final product.
+
+| Project Component | AI Tool | Purpose | Expected Output | Student Verification / Modification |
+|---|---|---|---|---|
+| **Module: Mock Interview — Question & Follow-up Generation** | Using **Google Gemini API** integrated with **Express.js backend** (`server/src/modules/mock-interview/services/mock-ai.service.js`) | To intelligently generate interview questions and contextual follow-up questions based on the selected job role, interview type (behavioral/technical), interview language (English/Bahasa Malaysia), and interviewer persona (neutral/friendly/strict) | Dynamic, role-relevant interview questions and follow-ups displayed in the interview session UI, localized in English or Bahasa Malaysia | Students will review, test, and tune the prompt templates and persona/language instructions to ensure question relevance, appropriate difficulty, and correct Bahasa Malaysia grammar, and manually verify that a local template fallback works when the API is unavailable |
+| **Module: Speech Transcription (Answer Capture)** | **OpenAI Whisper (local, `small` model)** via `whisper.service.js`, with Web Speech API on the React client | To convert the candidate's recorded spoken answers into accurate text transcripts, supporting both English and Bahasa Malaysia | A text transcript of each recorded answer shown in the transcript box and used as input for answer evaluation | Students will test transcription accuracy with varied accents, speaking speeds, and Bahasa Malaysia sentences; verify silence gaps (>3 seconds) are correctly detected by the audio recorder; and manually correct transcripts where misrecognition occurs |
+| **Module: Answer Evaluation & Feedback** | **Google Gemini API** (`answer-evaluation.service.js`) with a rule-based local fallback evaluator | To automatically evaluate each transcribed answer for content relevance, structure (e.g., STAR method), communication quality, and filler-word usage, and to generate constructive feedback | A per-question evaluation card with an overall score, per-criteria scores, strengths, weaknesses, and improvement tips in the Feedback Panel and final report | Students will validate AI scores against the rule-based local evaluator, review sample evaluations for fairness and consistency, adjust scoring weights and criteria thresholds, and confirm retry comparison deltas (before/after) are computed correctly |
+| **Module: Progress Dashboard & PDF Report** | AI-generated outputs aggregated locally (no external AI call at this stage) | To summarize AI evaluation results across sessions — score trends, filler-rate trends, and session history — and export a downloadable performance report | A `/progress` dashboard with trend charts and a downloadable jsPDF interview report per session | Students will verify all displayed metrics are computed from real persisted session data (SQLite), cross-check averages and trends manually, and confirm the PDF contents match the on-screen report |
+
+---
+
+## Versi Ringkas (1 baris, ikut format contoh)
+
+| Project Component | AI Tool | Purpose | Expected Output | Student Verification / Modification |
+|---|---|---|---|---|
+| Mock Interview Module (Question Generation, Answer Evaluation & Follow-ups) | Using **Google Gemini API Key** integrated with **Express.js** | To intelligently generate interview questions and follow-ups, and to evaluate candidate answers based on the chosen job role, interview type, language (English/Bahasa Malaysia), and interviewer persona (neutral/friendly/strict) | Role-relevant questions, per-question scores with strengths/weaknesses/tips, and a final performance report displayed dynamically on the interview and results pages | Students will review, test, and tune the prompts and scoring weights to ensure accuracy, verify evaluations against the rule-based local fallback, eliminate irrelevant questions, and manually confirm BM-language outputs are grammatically correct |
+
+---
+
+## Versi Bahasa Malaysia
+
+| Komponen Projek | Alat AI | Tujuan | Hasil Dijangka | Pengesahan / Pengubahsuaian Pelajar |
+|---|---|---|---|---|
+| Modul Temuduga Olok-Olok (Penjanaan Soalan, Penilaian Jawapan & Soalan Susulan) | Menggunakan **Google Gemini API Key** disepadukan dengan **Express.js** | Untuk menjana soalan temuduga dan soalan susulan secara pintar, serta menilai jawapan calon berdasarkan jawatan, jenis temuduga, bahasa (English/Bahasa Malaysia) dan personaliti penemuduga (neutral/friendly/strict) | Soalan yang relevan mengikut jawatan, skor setiap soalan berserta kekuatan/kelemahan/tips, dan laporan prestasi akhir yang dipaparkan secara dinamik pada halaman temuduga dan keputusan | Pelajar akan menyemak, menguji dan memperhalusi prompt serta pemberat skor bagi memastikan ketepatan, mengesahkan penilaian berbanding penilai berasaskan peraturan setempat, membuang soalan yang tidak relevan, dan mengesahkan secara manual bahawa output Bahasa Malaysia adalah betul dari segi tatabahasa |

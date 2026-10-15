@@ -1,0 +1,19 @@
+{
+  "name": "ai-interview-career-readiness",
+  "version": "1.0.1",
+  "private": true,
+  "description": "AI Interview Preparation & Career Readiness System",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:client": "cd client && npm run dev",
+    "dev:server": "cd server && npm run dev",
+    "install:all": "npm install && cd client && npm install && cd ../server && npm install",
+    "test": "cd client && npm test -- --run && cd ../server && npm test"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
