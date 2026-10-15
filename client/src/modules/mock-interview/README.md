@@ -1,28 +1,24 @@
-# AI Mock Interview Engine
+# AI Mock Interview Engine - Frontend
 
 ## Purpose
-Generate interview questions and simulate HR, behavioral, and technical interviews.
+Provides the UI for a role-based, adaptive AI mock interview. Users configure an interview, answer questions by text or voice, and review feedback and a final report.
 
-## Frontend
-- pages/: Main pages for this module.
-- components/: Reusable UI components.
-- services/: API integration.
-- hooks/: Custom React hooks.
-- tests/: Frontend tests.
+## Structure
+- `pages/`: `MockInterviewPage` container and `InterviewLayout` shell.
+- `components/`: `SetupForm`, `QuestionCard`, `RecordingControls`, `FeedbackPanel`, `ResultsView`.
+- `services/`: `mock-interview.service.js` (API client).
+- `hooks/`: `useAudioRecorder`, `useSpeechRecognition`.
+- `tests/`: Vitest component and service tests.
 
-## Backend
-- routes/: API endpoint definitions.
-- controllers/: HTTP request handlers.
-- services/: Business logic.
-- validators/: Request validation.
-- tests/: Backend tests.
+## Key Behaviors
+- `SetupForm` requires both role and type before starting.
+- Audio answers record via `MediaRecorder` and upload to `/api/mock-interview/sessions/:id/audio`.
+- The browser's `webkitSpeechRecognition` is used as a lightweight fallback transcription.
+- Final scores, strengths, weaknesses, and suggestions come from the backend report.
 
-## Development Guidelines
-- Implement only the responsibilities of this module.
-- Reuse the project's shared authentication and API conventions.
-- Coordinate database changes with the team.
-- Add tests and update documentation when implementing features.
-- Never commit API keys, passwords, or .env files.
+## Environment Variables
+- `VITE_API_BASE_URL`: API prefix used by the service layer (default `/api`).
 
-## Status
-Base structure created. Feature implementation is pending.
+## Known Limitations
+- Speech recognition requires a compatible browser (Chrome/Edge recommended).
+- Voice uploads require microphone permission.

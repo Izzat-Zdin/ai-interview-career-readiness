@@ -1,0 +1,33 @@
+{
+  "name": "ai-interview-career-readiness-server",
+  "version": "1.0.1",
+  "private": true,
+  "description": "AI Interview Preparation & Career Readiness System API",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "start:22": "npx -y node@22.14.0 src/index.js",
+    "dev": "nodemon src/index.js",
+    "dev:22": "npx -y node@22.14.0 node_modules/nodemon/bin/nodemon.js src/index.js",
+    "test": "set NODE_ENV=test&& vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "better-sqlite3": "^13.0.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "express-validator": "^7.2.0",
+    "multer": "^1.4.5-lts.1",
+    "uuid": "^11.0.2"
+  },
+  "devDependencies": {
+    "@vitest/ui": "^5.0.4",
+    "nodemon": "^3.1.7",
+    "supertest": "^7.3.1",
+    "vitest": "^2.1.9"
+  },
+  "engines": {
+    "node": ">=22.14.0"
+  }
+}
